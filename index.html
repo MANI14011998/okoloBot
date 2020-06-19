@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+  </head>
+  <body>
+    <h3>My Google Maps Demo</h3>
+    <!--The div element for the map -->
+    <div id="map"></div>
+    <script>
+        var arr =[]
+          arrobj=[]
+// Initialize and add the map
+const someFunc = () =>  {
+    
+    let url ="https://spreadsheets.google.com/feeds/list/1M9duz3kvjgHt59mymcevG5TC_erF3N_xMuxQhr_Mloo/od6/public/values?alt=json"
+    axios.get(url).then(function(data){
+       // console.log(data.data.feed.entry)
+        arr.push(data.data.feed.entry);
+
+    })
+    .then(function(){
+       
+        for (var i = arr[0].length-1; i >= 0; i--){
+            //console.log(arr[0][i]["gsx$longitude"],);
+            let obj={
+                "longitude":arr[0][i]["gsx$longitude"],
+                "latitude":arr[0][i]["gsx$latitude"],
+            }
+            arrobj.push(obj);
+
+        }
+         console.log(arrobj.length);
+
+        
+        
+    }).then(()=>{
+        for (var i = arrobj.length - 1; i >= 0; i--) {
+     console.log(i) 
+  let uluru = {lat: parseFloat(arrobj[i].latitude.$t), lng: parseFloat(arrobj[i].longitude.$t)};
+  
+
+ console.log(uluru)
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 4, center: uluru});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: uluru, map: map});
+  }
+    })
+
+}
+function initMap() {
+   someFunc();
+  // The location of Uluru
+
+  
+
+
+  // var uluru = {lat: -25.344, lng: 131.036};
+  // // The map, centered at Uluru
+  // var map = new google.maps.Map(
+  //     document.getElementById('map'), {zoom: 4, center: uluru});
+  // // The marker, positioned at Uluru
+  // var marker = new google.maps.Marker({position: uluru, map: map});
+}
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQhIXZ7gUdGpxLAemzg05wdfWB8D6S1Vg&callback=initMap">
+    </script>
+  </body>
+</html>
