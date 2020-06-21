@@ -1,8 +1,8 @@
-var token = "1096593339:AAEDKd5_nwVWoWi5P39ksQAh8Sk9Qevrv_s"; // FILL IN YOUR OWN TOKEN
+var token = ; // FILL IN YOUR OWN TOKEN
 var telegramUrl = "https://api.telegram.org/bot" + token;
-var webAppUrl = "https://script.google.com/macros/s/AKfycbz7blTulNY17opWUR9pdLjNY8LlN5gvJ0QjXmT2o2NCdAOeb48/exec"; // FILL IN YOUR GOOGLE WEB APP ADDRESS
-var ssId = "1M9duz3kvjgHt59mymcevG5TC_erF3N_xMuxQhr_Mloo"; // FILL IN THE ID OF YOUR SPREADSHEET
-var adminID = "517826128";   // 4. Fill in your own Telegram ID for debugging
+var webAppUrl = ; // FILL IN YOUR GOOGLE WEB APP ADDRESS
+var ssId = ; // FILL IN THE ID OF YOUR SPREADSHEET
+var adminID = "x";   // 4. Fill in your own Telegram ID for debugging
 
 function getMe() {
   var url = telegramUrl + "/getMe";
